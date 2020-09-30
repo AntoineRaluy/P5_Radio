@@ -97,6 +97,9 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },
@@ -551,5 +554,8 @@
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zenstruck/foundry": {
+        "version": "v1.1.3"
     }
 }
