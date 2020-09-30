@@ -26,7 +26,7 @@ class UserFixture extends BaseFixture
                 $user,
                 'the_new_password'
             ));
-            $user->setJoinDate();
+            $user->setJoinDate($this->faker->dateTimeThisYear($max = 'now'));
 
             return $user;
         });
