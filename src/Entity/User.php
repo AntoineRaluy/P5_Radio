@@ -34,6 +34,21 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $joinDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,5 +120,41 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getJoinDate(): ?\DateTimeInterface
+    {
+        return $this->joinDate;
+    }
+
+    public function setJoinDate(\DateTimeInterface $joinDate): self
+    {
+        $this->joinDate = $joinDate;
+
+        return $this;
     }
 }
