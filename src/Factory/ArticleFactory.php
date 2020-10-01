@@ -30,7 +30,7 @@ final class ArticleFactory extends ModelFactory
                 true
             ),
             'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'author' => 'admin',
+            'author' => self::faker()->firstName,
         ];
     }
 
