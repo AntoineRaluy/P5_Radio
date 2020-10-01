@@ -37,19 +37,19 @@ class ArticleController extends AbstractController
             $this->logger->info('We are in debug mode!');
         }
 
-        $answers = [
+        $acontent = [
             'Make sure your cat is sitting `purrrfectly` still 🤣',
             'Honestly, I like furry shoes better than MY cat',
             'Maybe... try saying the spell backwards?',
         ];
-        $questionText = 'I\'ve been turned into a cat, any *thoughts* on how to turn back? While I\'m **adorable**, I don\'t really care for cat food.';
+        $articleText = 'I\'ve been turned into a cat, any *thoughts* on how to turn back? While I\'m **adorable**, I don\'t really care for cat food.';
 
-        $parsedQuestionText = $markdownHelper->parse($questionText);
+        $parsedArticleText = $markdownHelper->parse($articleText);
 
         return $this->render('question/show.html.twig', [
-            'question' => ucwords(str_replace('-', ' ', $slug)),
-            'questionText' => $parsedQuestionText,
-            'answers' => $answers,
+            'article' => ucwords(str_replace('-', ' ', $slug)),
+            'articleText' => $parsedArticleText,
+            'acontent' => $acontent,
         ]);
     }
 

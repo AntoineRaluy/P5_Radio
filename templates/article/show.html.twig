@@ -3,6 +3,7 @@
 {% block title %}Hello ArticleController!{% endblock %}
 
 {% block body %}
+    <p class="d-inline">{{ articleText }}</p>
     {% foreach articles as article %}
         {{ article.title }}
         {{ article.content }}
