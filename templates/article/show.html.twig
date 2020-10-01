@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+    {% foreach articles as article %}
+        {{ article.title }}
+        {{ article.content }}
+        {{ article.postDate }}
+    {% endforeach %}
+    {% foreach comments as comment %}
+    
+    {% endforeach %}
+{% endblock %}
