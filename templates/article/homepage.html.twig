@@ -2,5 +2,10 @@
 
 {% block body %}
     <h1>Homepage</h1>
-    <a class="a-title" href="{{ path('app_article_show', { slug: 'new-article' }) }}"><h2>Voir l'article</h2></a>
+
+    {% for article in articles %}
+    <a class="a-title" href="{{ path('app_article_show', { slug: 'article.slug' }) }}"><h2>{{ article.name }}</h2></a>
+    <p class="d-inline">{{ article.content |parse_markdown }}</p>
+
+    {% endfor %}
 {% endblock %}

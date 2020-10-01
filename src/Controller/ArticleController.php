@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,30 +14,12 @@ class ArticleController extends AbstractController
      /**
      * @Route("/", name="app_homepage")
      */
-    public function homepage()
+    public function homepage(ArticleRepository $repository)
     {
-        return $this->render('article/homepage.html.twig');
-    }
+        $articles = $repository->findAllAskedOrderedByNewest();
 
-    /**
-     * @Route("/articles/{slug}", name="app_article_show")
-     */
-    public function show($slug, MarkdownHelper $markdownHelper)
-    {
-
-        $acontent = [
-            'Make sure your cat is sitting `purrrfectly` still 🤣',
-            'Honestly, I like furry shoes better than MY cat',
-            'Maybe... try saying the spell backwards?',
-        ];
-        $articleText = 'I\'ve been turned into a cat, any *thoughts* on how to turn back? While I\'m **adorable**, I don\'t really care for cat food.';
-
-        $parsedArticleText = $markdownHelper->parse($articleText);
-
-        return $this->render('article/show.html.twig', [
-            'article' => ucwords(str_replace('-', ' ', $slug)),
-            'articleText' => $parsedArticleText,
-            'acontent' => $acontent,
+        return $this->render('article/homepage.html.twig', [
+            'articles' => $articles,
         ]);
     }
 
@@ -45,5 +29,23 @@ class ArticleController extends AbstractController
     public function new()
     {
         return new Response('Time for some Doctrine magic!');
+    }
+
+    /**
+     * @Route("/articles/{slug}", name="app_article_show")
+     */
+    public function show(Article $article)
+    {
+
+        $acontent = [
+            'Make sure your cat is sitting `purrrfectly` still 🤣',
+            'Honestly, I like furry shoes better than MY cat',
+            'Maybe... try saying the spell backwards?',
+        ];
+
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
+            'acontent' => $acontent,
+        ]);
     }
 }
