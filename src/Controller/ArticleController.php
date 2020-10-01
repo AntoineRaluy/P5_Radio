@@ -13,11 +13,11 @@ class ArticleController extends AbstractController
     private $logger;
     private $isDebug;
 
-    public function __construct(LoggerInterface $logger, bool $isDebug)
-    {
-        $this->logger = $logger;
-        $this->isDebug = $isDebug;
-    }
+    // public function __construct(LoggerInterface $logger, bool $isDebug)
+    // {
+    //     $this->logger = $logger;
+    //     $this->isDebug = $isDebug;
+    // }
 
 
     /**
