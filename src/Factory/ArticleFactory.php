@@ -22,7 +22,6 @@ final class ArticleFactory extends ModelFactory
 {
     protected function getDefaults(): array
     {
-        $user = new User();
         return [
             'title' => self::faker()->realText(50),
             'slug' => self::faker()->slug,
@@ -31,7 +30,10 @@ final class ArticleFactory extends ModelFactory
                 true
             ),
             'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'author' => $user->getUsername(),
+            'author' => EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'username',
+                ],
         ];
     }
 

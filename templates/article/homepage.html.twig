@@ -5,7 +5,7 @@
 
     {% for article in articles %}
     <a class="a-title" href="{{ path('app_article_show', { slug: 'article.slug' }) }}"><h2>{{ article.title }}</h2></a>
-    <p class="d-inline">{{ article.content |parse_markdown }}</p>
+    <p class="d-inline">{{ article.content }}</p>
 
     {% endfor %}
 {% endblock %}
