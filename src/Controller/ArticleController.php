@@ -36,16 +36,8 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article)
     {
-
-        $acontent = [
-            'Make sure your cat is sitting `purrrfectly` still 🤣',
-            'Honestly, I like furry shoes better than MY cat',
-            'Maybe... try saying the spell backwards?',
-        ];
-
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'acontent' => $acontent,
         ]);
     }
 }

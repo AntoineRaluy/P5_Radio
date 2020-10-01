@@ -22,13 +22,14 @@ final class ArticleFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'title' => 'New playlist',
-            'slug' => 'new-playlist'.rand(0,1000),
-            'content' => <<<EOF
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            EOF,
-            'postDate' => new \DateTime(sprintf('-%d days', rand(1, 100))),
-            'author' => 'admin'
+            'title' => self::faker()->realText(50),
+            'slug' => self::faker()->slug,
+            'content' => self::faker()->paragraphs(
+                self::faker()->numberBetween(1, 4),
+                true
+            ),
+            'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
+            'author' => self::faker()->realText(10),
         ];
     }
 
