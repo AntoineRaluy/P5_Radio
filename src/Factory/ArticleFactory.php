@@ -30,10 +30,7 @@ final class ArticleFactory extends ModelFactory
                 true
             ),
             'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'author' => EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-                ],
+            'author' => 'admin',
         ];
     }
 
