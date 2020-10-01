@@ -5,12 +5,10 @@
 {% block body %}
     <p class="d-inline">{{ articleText|raw }}</p>
     <p class="d-inline">{{ acontent|markdown }}</p>
-    {% foreach articles as article %}
+    {% for article in articles %}
         {{ article.title }}
         {{ article.content }}
         {{ article.postDate }}
-    {% endforeach %}
+    {% endfor %}
 
-    
-    {% endforeach %}
 {% endblock %}

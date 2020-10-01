@@ -32,7 +32,7 @@ class ArticleController extends AbstractController
 
         $parsedArticleText = $markdownHelper->parse($articleText);
 
-        return $this->render('question/show.html.twig', [
+        return $this->render('article/show.html.twig', [
             'article' => ucwords(str_replace('-', ' ', $slug)),
             'articleText' => $parsedArticleText,
             'acontent' => $acontent,
