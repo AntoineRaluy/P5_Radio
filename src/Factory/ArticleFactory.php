@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Repository\ArticleRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -21,6 +22,7 @@ final class ArticleFactory extends ModelFactory
 {
     protected function getDefaults(): array
     {
+        $user = new User();
         return [
             'title' => self::faker()->realText(50),
             'slug' => self::faker()->slug,
@@ -29,16 +31,15 @@ final class ArticleFactory extends ModelFactory
                 true
             ),
             'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'author' => self::faker()->realText(10),
+            'author' => $user->getUsername(),
         ];
     }
 
     protected function initialize(): self
     {
         // see https://github.com/zenstruck/foundry#initialization
-        return $this
-            // ->beforeInstantiate(function(Article $article) {})
-        ;
+        return $this;
+            // ->afterInstantiate(function(Article $article) { });
     }
 
     protected static function getClass(): string
