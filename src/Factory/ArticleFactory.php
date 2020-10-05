@@ -3,7 +3,6 @@
 namespace App\Factory;
 
 use App\Entity\Article;
-use App\Entity\User;
 use App\Repository\ArticleRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
@@ -30,7 +29,6 @@ final class ArticleFactory extends ModelFactory
                 true
             ),
             'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'author' => self::faker()->firstName,
         ];
     }
 

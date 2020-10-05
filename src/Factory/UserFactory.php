@@ -7,7 +7,6 @@ use App\Repository\UserRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @method static User|Proxy findOrCreate(array $attributes)
@@ -20,13 +19,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 final class UserFactory extends ModelFactory
 {
-    // private $passwordEncoder;
-
-    // public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    // {
-    //     $this->passwordEncoder = $passwordEncoder;
-    // }
-
     protected function getDefaults(): array
     {
         return [
@@ -35,7 +27,6 @@ final class UserFactory extends ModelFactory
             'roles' => ['ROLE_USER'],
             'firstName' => self::faker()->firstName,
             'joinDate' => self::faker()->dateTimeThisYear($max = 'now'),
-            'password' => self::faker()->password,
         ];
     }
 
@@ -44,10 +35,6 @@ final class UserFactory extends ModelFactory
         // see https://github.com/zenstruck/foundry#initialization
         return $this
         //     ->afterInstantiate(function(User $user) {
-        //         if (!$user->getPassword()) {
-        //             $user->setPassword($this->passwordEncoder->encodePassword($user, 'the_new_password'));
-        //         }
-        //     })
         ;
     }
 
