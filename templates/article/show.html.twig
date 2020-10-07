@@ -4,6 +4,6 @@
 
 {% block body %}
         {{ article.content }}
-        {{ article.createdAt }}
+        {{ article.createdAt|date('Y-m-d H:i:s') }}
 
 {% endblock %}
