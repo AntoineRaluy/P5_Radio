@@ -24,10 +24,10 @@ class ArticleRepository extends ServiceEntityRepository
     //  */
 
 
-    public function findAllAskedOrderedByNewest()
+    public function findAllPostedOrderedByNewest()
     {
         return $this->createQueryBuilder('a')
-            ->orderBy('a.postDate', 'DESC')
+            ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;

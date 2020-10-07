@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
 class Article
-{
+{   
+    use TimestampableEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,11 +36,6 @@ class Article
      * @ORM\Column(type="text")
      */
     private $content;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $postDate;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
@@ -82,18 +80,6 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getPostDate(): ?\DateTimeInterface
-    {
-        return $this->postDate;
-    }
-
-    public function setPostDate(\DateTimeInterface $postDate): self
-    {
-        $this->postDate = $postDate;
 
         return $this;
     }
