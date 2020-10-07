@@ -24,7 +24,6 @@ final class ArticleFactory extends ModelFactory
     {
         return [
             'title' => self::faker()->realText(50),
-            'slug' => self::faker()->slug,
             'content' => self::faker()->paragraphs(
                 self::faker()->numberBetween(1, 4),
                 true
