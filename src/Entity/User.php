@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -15,7 +16,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("email")
  */
 class User implements UserInterface
-{
+{   
+    use TimestampableEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -48,11 +51,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $firstName;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $joinDate;
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
@@ -157,18 +155,6 @@ class User implements UserInterface
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getJoinDate(): ?\DateTimeInterface
-    {
-        return $this->joinDate;
-    }
-
-    public function setJoinDate(\DateTimeInterface $joinDate): self
-    {
-        $this->joinDate = $joinDate;
 
         return $this;
     }

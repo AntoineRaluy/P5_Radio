@@ -3,7 +3,7 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-        {{ article.content }}
-        {{ article.createdAt|date('Y-m-d H:i:s') }}
+        {{ article.content|raw }}
+        {{ article.createdAt|date('d-m-Y') }}
 
 {% endblock %}
