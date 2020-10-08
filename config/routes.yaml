@@ -5,3 +5,7 @@ index:
 dashboard:
    path: /admin
    controller: App\Controller\Admin\DashboardController::index
+
+app_logout:
+   path: /logout
+   methods: GET
