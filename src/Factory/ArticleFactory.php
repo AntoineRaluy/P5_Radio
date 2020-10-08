@@ -28,7 +28,6 @@ final class ArticleFactory extends ModelFactory
                 self::faker()->numberBetween(1, 4),
                 true
             ),
-            'postDate' => self::faker()->dateTimeThisYear($max = 'now'),
             'author' => UserFactory::new()
         ];
     }
