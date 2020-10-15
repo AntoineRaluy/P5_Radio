@@ -39,7 +39,7 @@ class Comment
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isFlagged;
+    private $isFlagged = false;
 
     public function getId(): ?int
     {

@@ -17,6 +17,9 @@
                 <div class="row">
                         <span class="commenter-name">{{ comment.author }}</span>
                         <small> {{ comment.createdAt|date('d-m-Y') }}</small>
+                        {% if comment.isFlagged %}
+                                <span class="fa fa-flag"></span> Signalé
+                        {% endif %}
                         <br>
                         <span class="comment"> {{ comment.content }}</span>
                         <p><a href="#">Répondre</a></p>
