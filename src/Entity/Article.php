@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -127,6 +128,15 @@ class Article
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getFlaggedComments(): Collection
+    {
+        $criteria = ArticleRepository::createFlaggedCriteria();
+        return $this->comments->matching($criteria);
     }
 
     public function removeComment(Comment $comment): self

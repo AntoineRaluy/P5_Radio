@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Article;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,14 +26,24 @@ class ArticleRepository extends ServiceEntityRepository
 
 
     public function findAllPostedOrderedByNewest()
-    {
+    {   
+        $this->createQueryBuilder('a')
+            ->addCriteria(self::createFlaggedCriteria());
+
         return $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-
+    
+    public static function createFlaggedCriteria(): Criteria
+    {
+        return Criteria::create()
+            ->andWhere(Criteria::expr()->eq('isFlagged', true))
+            ->orderBy(['createdAt' => 'DESC'])
+        ;
+    }
     // public function findByExampleField($value)
     // {
     //     return $this->createQueryBuilder('a')
