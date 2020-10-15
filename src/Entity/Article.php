@@ -48,7 +48,8 @@ class Article
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true, fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $comments;
 

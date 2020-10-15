@@ -3,7 +3,24 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-        {{ article.content|raw }}
+        <span>
         {{ article.createdAt|date('d-m-Y') }}
+        </span>
+                <div class="article-text">
+                        {{ article.content|raw }}
+                </div>
+        </div>
+
+        <h3><i class="pr-3 fa fa-comment"></i>{{ article.comments|length }} Comments</h3>
+        <hr>
+        {% for comment in article.comments %}
+                <div class="row">
+                        <span class="commenter-name">{{ comment.author }}</span>
+                        <small> {{ comment.createdAt|date('d-m-Y') }}</small>
+                        <br>
+                        <span class="comment"> {{ comment.content }}</span>
+                        <p><a href="#">Répondre</a></p>
+                </div>
+        {% endfor %}
 
 {% endblock %}
