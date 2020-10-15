@@ -20,7 +20,7 @@ class ArticleCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('author_id'),
+            TextField::new('author'),
             TextField::new('title'),
             TextEditorField::new('content'),
         ];

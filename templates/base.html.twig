@@ -3,12 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
-        <a href="{{ path('app_homepage') }}">Retour à l'accueil</a>
+        <header class="bg-info navmenu">
+        <div class="container">
+            <div class="row">
+                <nav class="col navbar navbar-expand-md navbar-dark">
+                    <a class="navbar-brand mr-5" href="index.php"><h1>Radio</h1></a>
+                    <div id="navbarContent">
+                        <ul class="navbar-nav ml-5">
+                            <li class="nav-item active">
+                                <a class="nav-link" href='{{ path('app_homepage') }}'>Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Proposer un morceau</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Liste des morceaux</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Historique de diffusion</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li> 
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
         {% block body %}
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
