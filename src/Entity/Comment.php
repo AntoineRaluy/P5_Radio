@@ -36,6 +36,11 @@ class Comment
      */
     private $content;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFlagged;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +78,18 @@ class Comment
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getIsFlagged(): ?bool
+    {
+        return $this->isFlagged;
+    }
+
+    public function setIsFlagged(bool $isFlagged): self
+    {
+        $this->isFlagged = $isFlagged;
 
         return $this;
     }
