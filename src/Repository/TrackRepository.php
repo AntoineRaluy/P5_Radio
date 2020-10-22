@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Track;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,7 +20,16 @@ class TrackRepository extends ServiceEntityRepository
         parent::__construct($registry, Track::class);
     }
 
-    // /**
+    public function findAllPostedTracksOrderedByArtist()
+    {   
+            return $this->createQueryBuilder('t')
+            ->orderBy('t.artist', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+     // /**
     //  * @return Track[] Returns an array of Track objects
     //  */
     /*
