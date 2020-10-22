@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Factory\UserFactory;
+use App\Factory\TrackFactory;
 use App\Factory\ArticleFactory;
 use App\Factory\CommentFactory;
 use Doctrine\Persistence\ObjectManager;
@@ -20,6 +21,10 @@ class AppFixtures extends Fixture
         CommentFactory::new()->createMany(4, [
             'author' => UserFactory::repository()->random(),
             'article' => ArticleFactory::repository()->random(),
+        ]);
+
+        TrackFactory::new()->createMany(20, [
+            'contributor' => UserFactory::repository()->random(),
         ]);
         
         $manager->flush();
