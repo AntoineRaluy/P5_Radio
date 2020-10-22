@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <nav class="col navbar navbar-expand-md navbar-dark">
-                    <a class="navbar-brand mr-5" href="index.php"><h1>Radio</h1></a>
+                    <a class="navbar-brand mr-5" href="{{ path('app_homepage') }}"><h1>Radio</h1></a>
                     <div id="navbarContent">
                         <ul class="navbar-nav ml-5">
                             <li class="nav-item active">
@@ -22,10 +22,10 @@
                                 <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Proposer un morceau</a>
+                                <a class="nav-link" href="{{ path('app_track_new') }}">Proposer un morceau</a>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Liste des morceaux</a>
+                                <a class="nav-link" href="{{ path('app_tracklist') }}">Liste des morceaux</a>
                             </li> 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Historique de diffusion</a>

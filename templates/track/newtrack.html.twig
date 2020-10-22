@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposer un morceau{% endblock %}
+
+{% block body %}
+<h2>Proposer un morceau</h2>
+
+{{ form_start(trackForm) }}
+
+{{ form_row(trackForm.title) }}
+{{ form_row(trackForm.artist) }}
+{{ form_row(trackForm.genre) }}
+{{ form_row(trackForm.year) }}
+<input type="submit" formnovalidate="formnovalidate" value="Envoyer">
+
+{{ form_end(trackForm) }}
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ track.title }}{% endblock %}
+
+{% block body %}
+<h2>{{ track.title }}</h2>
+    <span>
+        ajouté le {{ track.createdAt|date('d-m-Y') }} par {{ track.contributor }}
+    </span>
+        <div class="row">
+                <p>Morceau interprété par : <span class="artist-name">{{ track.artist }}</span></p>
+                <p>Genre : <span class="track-genre">{{ track.genre }}</span></p>
+                <p>Année : <span class="track-year">{{ track.year }}</span></p>
+                <p>Durée : </p>
+
+        </div>
+
+{% endblock %}
