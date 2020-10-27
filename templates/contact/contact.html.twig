@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de contact{% endblock %}
+
+{% block body %}
+
+<div>
+    {{ form_start(contactForm) }}
+    {{ form_widget(contactForm) }}
+
+    <input type="submit" formnovalidate="formnovalidate" value="Envoyer" class="btn btn-success">
+
+    {{ form_end(contactForm) }}
+</div>
+
+{% endblock %}
