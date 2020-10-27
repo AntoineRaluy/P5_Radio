@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap";
 
+html {
+    margin: 0 50px;
+}
+
 h3 {
     color:green;
 }
