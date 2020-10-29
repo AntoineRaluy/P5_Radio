@@ -15,4 +15,3 @@ import $ from 'jquery';
 // create global $ and jQuery variables
 global.$ = global.jQuery = $;
 
-console.log('Hello Webpack Encore! Edit me in assets/app.js');
