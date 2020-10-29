@@ -29,6 +29,14 @@ class TrackRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findTrack($title) {
+        return $this->createQueryBuilder('Track')
+            ->andWhere('Track.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->execute();
+    }
+
      // /**
     //  * @return Track[] Returns an array of Track objects
     //  */

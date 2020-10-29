@@ -4,9 +4,14 @@
 
 {% block body %}
 <h2>Proposer un morceau</h2>
-<p><em>champ de recherche</em></p>
+
+    {{ form_start(searchForm) }}
+    {{ form_widget(searchForm, {'label': " ", 'attr': {'placeholder': 'mot clé...'}}) }}
+    <button class="btn btn-primary">Rechercher</button>
+    {{ form_end(searchForm) }}
+
 <div>
-    <p>Si le morceau est intoruvable, remplissez le formulaire ci-dessous : </p>
+    <p>Si le morceau est introuvable, remplissez le formulaire ci-dessous : </p>
 </div>
 
 <div>
