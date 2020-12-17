@@ -124,6 +124,15 @@
     "knplabs/knp-markdown-bundle": {
         "version": "1.8.1"
     },
+    "laminas/laminas-code": {
+        "version": "3.5.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.1"
+    },
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
@@ -596,6 +605,9 @@
     },
     "twig/twig": {
         "version": "v3.0.5"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.9.1"
