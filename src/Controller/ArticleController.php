@@ -24,14 +24,6 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/articles/new")
-     */
-    public function new()
-    {
-        return new Response('Time for some Doctrine magic!');
-    }
-
-    /**
      * @Route("/articles/{slug}", name="app_article_show")
      */
     public function show(Article $article)
