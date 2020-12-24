@@ -6,7 +6,7 @@
     {% for article in articles %}
     <a class="a-title" href="{{ path('app_article_show', { slug: article.slug }) }}"><h2>{{ article.title }}</h2></a>
     <small>({{ article.comments|length }} commentaires)</small>
-    <p class="d-inline">{{ article.content }}</p>
+    <p class="d-inline">{{ article.content|raw }}</p>
 
     {% endfor %}
 {% endblock %}
