@@ -5,26 +5,66 @@
 {% block body %}
 <h2>Proposer un morceau</h2>
 
-    {{ form_start(searchForm) }}
-    {{ form_widget(searchForm, {'label': " ", 'attr': {'placeholder': 'mot clé...'}}) }}
-    <button class="btn btn-primary">Rechercher</button>
-    {{ form_end(searchForm) }}
-
 <div>
-    <p>Si le morceau est introuvable, remplissez le formulaire ci-dessous : </p>
+    <p>Renseignez le nom d'artiste et du morceau, puis sélectionnez le titre correspondant : </p>
+</div>
+
+<div id="track-details">
+    <form class="newtrack-form">
+        <div class="artist-field">
+        <label for="artist-name">Nom de l'artiste :</label>
+        <input id="artist-name" type="text" placeholder="Artiste" name="" required />
+        </div>
+        <div class="title-field">
+        <label for="track-title">Titre du morceau :</label>
+        <input id="track-title" type="text" placeholder="Morceau" name="" required />
+        </div>
+        <div class="searchbtn">
+        <input type="submit" id="search-button" value="Rechercher" />
+        </div>
+    </form>
+    </div>
+
+<div id="select-song">
+<hr>
 </div>
 
 <div>
-{{ form_start(trackForm) }}
+    <p>Si le morceau est introuvable, merci de joindre un lien avec les détails du morceau (Amazon Music, Apple Music, Discogs, Spotify, etc...): </p>
+    <input type="url" name="url" id="url"
+       placeholder="https://example.com"
+       pattern="https://.*" size="30"
+       required>
+</div>
 
-{{ form_row(trackForm.title) }}
-{{ form_row(trackForm.artist) }}
-{{ form_row(trackForm.genre) }}
-{{ form_row(trackForm.year) }}
 <input type="submit" formnovalidate="formnovalidate" value="Envoyer">
 
-{{ form_end(trackForm) }}
-</div>
 
+  {{ form_start(trackForm) }}
+    <div class="form-group">
+        {{ form_label(trackForm.artist) }}
+        {{ form_widget(trackForm.artist) }} 
+    </div>
+   <div class="form-group">
+        {{ form_label(trackForm.title) }}
+        {{ form_widget(trackForm.title) }} 
+    </div>
+    <div class="form-group">
+        {{ form_label(trackForm.genre) }}
+        {{ form_widget(trackForm.genre) }} 
+    </div>
+    <div class="form-group">
+        {{ form_label(trackForm.year) }}
+        {{ form_widget(trackForm.year) }} 
+    </div>
 
+    <button id="music-search-field" class="btn btn-primary">Envoyer</button>
+
+{{ form_end(trackForm, {'render_rest': false}) }}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('searchTrack') }}
 {% endblock %}
