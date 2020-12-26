@@ -2,11 +2,6 @@ const $searchTrackForm = document.querySelector('.newtrack-form');
 const $artistEntry = document.querySelector('#artist-name');
 const $titleEntry = document.querySelector('#track-title');
 
-const $newArtistEntry = document.querySelector('.data-entry-artist');
-const $newTitleEntry = document.querySelector('.data-entry-title');
-const $newGenreEntry = document.querySelector('.data-entry-genre');
-const $newYearEntry = document.querySelector('.data-entry-year');
-
     $searchTrackForm.addEventListener('submit', event => {
         event.preventDefault();
         matchMB($artistEntry.value, $titleEntry.value);
