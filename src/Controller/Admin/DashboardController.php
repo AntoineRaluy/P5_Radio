@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Track;
 use App\Entity\Article;
 use App\Entity\Comment;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Articles', 'fa fa-pen', Article::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa fa-comment', Comment::class);
+        yield MenuItem::linkToCrud('Morceaux', 'fa fa-music', Track::class);
         yield MenuItem::section('Membres');
         yield MenuItem::linkToCrud('Membres', 'fa fa-user', User::class);
         yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
