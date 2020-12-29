@@ -20,6 +20,7 @@ const $titleEntry = document.querySelector('#track-title');
                     title: trackFound.title,
                     year: trackFound.releases[0].date.substring(0,4),
                     albumID: trackFound.releases[0]['release-group'].id,
+                    mbid: trackFound.releases[0].id,
                     album: trackFound.releases[0].title,
                     genre: null,
                     length: trackFound.length,
@@ -38,7 +39,6 @@ const $titleEntry = document.querySelector('#track-title');
             for (mbTrack of mbTracks) {
                 const mbGenre = await fetch('https://musicbrainz.org/ws/2/release-group/'+mbTrack.albumID+'?inc=genres&fmt=json');
                 const trackGenre = await mbGenre.json();
-                console.log(trackGenre);
                 if (trackGenre.genres[0]) {
                     mbTrack['genre'] = trackGenre.genres[0].name;
                 } else {
@@ -85,6 +85,7 @@ const $titleEntry = document.querySelector('#track-title');
                     document.querySelector('.data-entry-title').value = mbTracks[i].title;
                     document.querySelector('.data-entry-genre').value = mbTracks[i].genre;
                     document.querySelector('.data-entry-year').value = mbTracks[i].year;
+                    document.querySelector('.data-entry-mbid').value = mbTracks[i].mbid;
                     $sendTrackForm.scrollIntoView();
                 })
             }

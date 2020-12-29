@@ -33,7 +33,11 @@ class TrackFormType extends AbstractType
                         'class' => 'data-entry-year',
                         ]
             ])
-            // ->add('url')
+            ->add('mbid', null, [
+                'attr' => [
+                        'class' => 'data-entry-mbid',
+                        ]
+            ])
         ;
     }
 

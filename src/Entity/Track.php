@@ -47,6 +47,16 @@ class Track
      */
     private $contributor;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $mbid;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +118,30 @@ class Track
     public function setContributor(?User $contributor): self
     {
         $this->contributor = $contributor;
+
+        return $this;
+    }
+
+    public function getMbid(): ?string
+    {
+        return $this->mbid;
+    }
+
+    public function setMbid(?string $mbid): self
+    {
+        $this->mbid = $mbid;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -23,6 +23,7 @@ class TrackRepository extends ServiceEntityRepository
     public function findAllPostedTracksOrderedByArtist()
     {   
             return $this->createQueryBuilder('t')
+            ->Where('t.status LIKE :true')
             ->orderBy('t.artist', 'ASC')
             ->getQuery()
             ->getResult()
