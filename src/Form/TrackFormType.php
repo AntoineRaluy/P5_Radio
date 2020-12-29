@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Track;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,7 +34,7 @@ class TrackFormType extends AbstractType
                         'class' => 'data-entry-year',
                         ]
             ])
-            ->add('mbid', null, [
+            ->add('mbid', HiddenType::class, [
                 'attr' => [
                         'class' => 'data-entry-mbid',
                         ]
