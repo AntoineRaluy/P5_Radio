@@ -2,3 +2,5 @@ easy_admin:
    entities:
       - App\Entity\User
       - App\Entity\Article
+      - App\Entity\Comment
+      - App\Entity\Track
