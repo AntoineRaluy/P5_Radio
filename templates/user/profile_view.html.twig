@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour {{ app.user.username }}{% endblock %}
+
+{% block body %}
+Bonjour {{ app.user.username }}
+
+<img src="{{ app_asset(asset('uploads/avatars/' ~ app.user.imageFilename), {'w': 150, 'h': 150}) }}" class="" alt="">
+
+<ul>
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_user_edit', {username: app.user.username}) }}">Editer le Profil</a>
+</li> 
+</ul>
+
+{% endblock %}
