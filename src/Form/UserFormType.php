@@ -17,7 +17,6 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('password', PasswordType::class)
             ->add('email')
             ->add('firstName')
             ->add('imageFilename', FileType::class, [
