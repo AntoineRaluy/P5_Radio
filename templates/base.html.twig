@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-FR">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bonjour !{% endblock %}</title>
         {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -34,6 +34,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                             </li> 
+                                {% if is_granted('ROLE_ADMIN') == true %}
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin') }}">Panneau d'administration</a>
+                                </li> 
+                                {% endif %}
                             {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
