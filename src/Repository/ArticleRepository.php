@@ -44,6 +44,8 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy(['createdAt' => 'DESC'])
         ;
     }
+
+    
     // public function findByExampleField($value)
     // {
     //     return $this->createQueryBuilder('a')
