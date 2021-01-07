@@ -17,12 +17,23 @@
                         <span class="commenter-name">{{ comment.author }}</span>
                         <small> {{ comment.createdAt|date('d-m-Y') }}</small>
                         {% if comment.isFlagged %}
-                                <span class="fa fa-flag"></span> Signalé
+                                <span class="fa fa-flag"></span> Commentaire en attente de modération
+                        {% else %}
+                                <br>
+                                <span class="comment"> {{ comment.content }}</span>
+                                <br>
+                                <form action="{{ url('app_flag_comment', {slug: article.slug, id: comment.id}) }}" method="POST"><button name="flag">Signaler le commentaire</button></form>
                         {% endif %}
-                        <br>
-                        <span class="comment"> {{ comment.content }}</span>
-                        <p><a href="#">Répondre</a></p>
                 </div>
+                
         {% endfor %}
+
+        {% if app.user %}
+        {{ form_start(commentForm) }}
+        {{ form_widget(commentForm) }}
+        {{ form_end(commentForm) }}
+        {% else %}
+        <div><p>Connectez-vous pour poster un commentaire.</p></div>
+        {% endif %}
 
 {% endblock %}
