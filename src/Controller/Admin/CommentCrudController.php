@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -19,10 +20,11 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('author'),
-            TextEditorField::new('content'),
-            BooleanField::new('isFlagged')
+            // IdField::new('id')->hideOnForm(),
+            TextField::new('author', 'Membre'),
+            TextEditorField::new('content', 'Commentaire'),
+            DateField::new('createdAt', 'Posté le'),
+            BooleanField::new('isFlagged', 'Signalé')
         ];
     }
 }

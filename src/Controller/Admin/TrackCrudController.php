@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Track;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -17,16 +18,21 @@ class TrackCrudController extends AbstractCrudController
         return Track::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setEntityLabelInPlural('Morceaux')->setEntityLabelInSingular('Morceau');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('artist'),
-            TextField::new('title'),
-            TextField::new('genre'),
-            NumberField::new('year'),
-            TextField::new('mbid'),
-            BooleanField::new('status'),
+            // IdField::new('id')->hideOnForm(),
+            TextField::new('artist', 'Artiste'),
+            TextField::new('title', 'Titre'),
+            TextField::new('genre', 'Genre'),
+            NumberField::new('year', 'Année'),
+            // TextField::new('mbid'),
+            BooleanField::new('status', 'Nouveaux ajouts'),
         ];
     }
 }
