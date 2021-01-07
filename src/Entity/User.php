@@ -33,6 +33,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="username", type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Merci de renseigner un nom d'utilisateur")
      */
     private $username;
 
