@@ -9,23 +9,30 @@ const $titleEntry = document.querySelector('#track-title');
 
     async function matchMB(artistEntry, titleEntry) {
         try {
-        const mbUrl = await fetch('https://musicbrainz.org/ws/2/recording/?query=artist:'+artistEntry+'+AND+recording:'+titleEntry+'+AND+status:official+AND+NOT+secondarytype:Compilation+AND+NOT+secondarytype:Live&limit=10&fmt=json');
+        const mbUrl = await fetch('https://musicbrainz.org/ws/2/recording/?query=artist:"'+artistEntry+'"+AND+recording:"'+titleEntry+'"+AND+status:official+NOT+video&fmt=json');
         const trackSearch = await mbUrl.json();
         let mbTracks = [];
              
         trackSearch.recordings.forEach(trackFound => {
-            if (trackFound.score == 100 && (trackFound.releases[0].date)) {
-                let trackData = {
-                    artist: trackFound['artist-credit'][0].name,
-                    title: trackFound.title,
-                    year: trackFound.releases[0].date.substring(0,4),
-                    albumID: trackFound.releases[0]['release-group'].id,
-                    mbid: trackFound.releases[0].id,
-                    album: trackFound.releases[0].title,
-                    genre: null,
-                    length: trackFound.length,
-                };
-                mbTracks.push(trackData);
+            if (trackFound.score >= 80 
+                && (trackFound['first-release-date'])
+                && (trackFound.releases[0].status) == "Official"
+                && !((trackFound.releases[0]['release-group']['secondary-types'])
+                    || ((trackFound.releases[0]['release-group']['secondary-types']) == "Compilation")
+                    || ((trackFound.releases[0]['release-group']['secondary-types']) == "Live"))
+                && !((trackFound.releases[0].media[0].format) == "DVD")) {
+                    
+                    let trackData = {
+                        artist: trackFound['artist-credit'][0].name,
+                        title: trackFound.title,
+                        year: trackFound['first-release-date'].substring(0,4),
+                        albumID: trackFound.releases[0]['release-group'].id,
+                        mbid: trackFound.releases[0].id,
+                        album: trackFound.releases[0].title,
+                        genre: null,
+                        length: trackFound.length,
+                    };
+                    mbTracks.push(trackData);
             }
         });
         getGenre(mbTracks);
