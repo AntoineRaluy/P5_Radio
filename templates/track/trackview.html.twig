@@ -11,8 +11,21 @@
                 <p>Morceau interprété par : <span class="artist-name">{{ track.artist }}</span></p>
                 <p>Genre : <span class="track-genre">{{ track.genre }}</span></p>
                 <p>Année : <span class="track-year">{{ track.year }}</span></p>
-                <p>Durée : </p>
-
+                <p>Ajouté par : <span class="track-contrib"> 
+                {% if track.contributor %}
+                {{ track.contributor }}
+                {% else %}
+                Un utilisateur anonyme.
+                {% endif %}
+                </span></p>
         </div>
 
+        <div id="artwork"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>const mbid = '{{ track.mbid }}';</script>
+{{ encore_entry_script_tags('coverArt') }}
 {% endblock %}
