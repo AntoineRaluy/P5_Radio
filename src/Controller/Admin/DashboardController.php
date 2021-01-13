@@ -38,10 +38,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Retour au site', 'fa fa-home', '/');
         yield MenuItem::section('Contenu du site');
         yield MenuItem::linkToCrud('Articles', 'fa fa-pen', Article::class);
-        yield MenuItem::linkToCrud('Commentaires', 'fa fa-comment', Comment::class);
         yield MenuItem::linkToCrud('Morceaux', 'fa fa-music', Track::class);
         yield MenuItem::section('Membres');
         yield MenuItem::linkToCrud('Membres', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fa fa-comment', Comment::class);
         yield MenuItem::section(null);
         yield MenuItem::linkToLogout('Logout', 'fa fa-door-open');
     }

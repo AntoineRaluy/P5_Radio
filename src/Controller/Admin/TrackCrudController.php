@@ -32,7 +32,7 @@ class TrackCrudController extends AbstractCrudController
             TextField::new('genre', 'Genre'),
             NumberField::new('year', 'Année'),
             // TextField::new('mbid'),
-            BooleanField::new('status', 'Nouveaux ajouts'),
+            BooleanField::new('status', 'En ligne'),
         ];
     }
 }
