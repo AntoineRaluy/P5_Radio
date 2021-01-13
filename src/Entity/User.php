@@ -304,7 +304,7 @@ class User implements UserInterface
         return $this->agreedTermsAt;
     }
 
-    public function agreeTerms()
+    public function setAgreedTermsAt()
     {
         $this->agreedTermsAt = new \DateTime();
 

@@ -26,6 +26,7 @@ final class UserFactory extends ModelFactory
             'email' => self::faker()->email,
             'roles' => ['ROLE_USER'],
             'firstName' => self::faker()->firstName,
+            'agreedTermsAt' => self::faker()->dateTime,
              /* password = password */ 
             'password' => '$argon2id$v=19$m=65536,t=4,p=1$UG9ySFpqT2pUYmVLeVZxdw$cq2kq/0sAqL9m3dAA7Vhz5SpVMfGmtmziSgl5aQZI9w',
         ];
