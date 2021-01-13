@@ -40,6 +40,12 @@ class TrackController extends AbstractController
             $title = $track->getTitle();
             $artist = $track->getArtist();
 
+            if (($this->isGranted('ROLE_ADMIN') || $this->isGranted('ROLE_USER')) == true) {
+                $user= $this->get('security.token_storage')->getToken()->getUser();
+                $track->setContributor($user);
+            }
+            
+
             $resultTrack = $repoTrack->findTrack($artist, $title);
             
             if ($resultTrack == !null) {
