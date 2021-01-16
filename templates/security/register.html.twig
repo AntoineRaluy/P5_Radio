@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% form_theme registrationForm _self %}
 
 {% block title %}Inscription{% endblock %}
 
@@ -7,7 +8,21 @@
     <div class="row">
         <div class="col-sm-12">
             {{ form_start(registrationForm) }}
-                {{ form_widget(registrationForm) }}
+                {{ form_label(registrationForm.username) }}
+                {{ form_widget(registrationForm.username) }} 
+                {{ form_label(registrationForm.plainPassword) }}
+                {{ form_widget(registrationForm.plainPassword) }} 
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }} 
+                
+                {{ form_widget(registrationForm.agreeTerms) }} 
+                {% block resgistrationForm_agreeTerms_label %}
+                {{ 'Accepter les <a href="{{ path("app_policies") }}">conditions</a> pour finaliser l\'inscription' | raw }}
+                {% endblock %} 
+                <br>
+                {{ form_label(registrationForm.submit) }}
+                {{ form_widget(registrationForm.submit) }} 
+
             {{ form_end(registrationForm) }}
         </div>
     </div>
