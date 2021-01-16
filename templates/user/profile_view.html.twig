@@ -10,6 +10,9 @@ Bonjour {{ app.user.username }}
 <ul>
 <li class="nav-item">
     <a class="nav-link" href="{{ path('app_user_edit', {username: app.user.username}) }}">Editer le Profil</a>
+</li>
+<li class="nav-item">
+    <a href="{{ path('app_edit_password', {username: app.user.username}) }}">Modifier le mot de passe</a>
 </li> 
 </ul>
 

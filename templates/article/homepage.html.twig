@@ -3,10 +3,16 @@
 {% block body %}
     <h1>Homepage</h1>
 
+<div class="row">
     {% for article in articles %}
-    <a class="a-title" href="{{ path('app_article_show', { slug: article.slug }) }}"><h2>{{ article.title }}</h2></a>
-    <small>({{ article.comments|length }} commentaires)</small>
-    <p class="d-inline">{{ article.content|raw }}</p>
-
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card m-2 shadow-sm">
+            <a class="a-title" href="{{ path('app_article_show', { slug: article.slug }) }}"><h2>{{ article.title }}</h2></a>
+            <small>({{ article.comments|length }} commentaires)</small>
+            <p class="d-inline">{{ article.content|raw }}</p>
+        </div>
+    </div>
     {% endfor %}
+</div>
+    {{ knp_pagination_render(articles) }}
 {% endblock %}

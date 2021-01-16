@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <h1>Base de données des titres de la radio</h1>
     
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Artiste</th>
       <th scope="col">Titre</th>
       <th scope="col">Genre</th>
@@ -17,10 +17,9 @@
 
     {% for track in tracks %}
         <tr>
-            <th scope="row">{{ track.id }}</th>
             <td>{{ track.artist }}</td>
             <td><a class="a-title" href="{{ path('app_track_show', { id: track.id }) }}">{{ track.title }}</a></td>
-            <td>{{ track.genre }}</td>
+            <td class="genre">{{ track.genre }}</td>
             <td>{{ track.year }}</td>
         </tr>
     {% endfor %}
