@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Track;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -31,7 +29,6 @@ class TrackCrudController extends AbstractCrudController
             TextField::new('title', 'Titre'),
             TextField::new('genre', 'Genre'),
             NumberField::new('year', 'Année'),
-            // TextField::new('mbid'),
             BooleanField::new('status', 'En ligne'),
         ];
     }

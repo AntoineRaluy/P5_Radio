@@ -18,19 +18,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/eadmin", name="admin")
      */
     public function index(): Response
     {
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
 
-        return $this->redirect($routeBuilder->setController(ArticleCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(TrackCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Radio P5');
+            ->setTitle('Beats\'N\'Roll Radio');
     }
 
     public function configureMenuItems(): iterable
@@ -39,11 +39,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Contenu du site');
         yield MenuItem::linkToCrud('Articles', 'fa fa-pen', Article::class);
         yield MenuItem::linkToCrud('Morceaux', 'fa fa-music', Track::class);
-        yield MenuItem::section('Membres');
+        yield MenuItem::section('Utilisateurs');
         yield MenuItem::linkToCrud('Membres', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa fa-comment', Comment::class);
         yield MenuItem::section(null);
-        yield MenuItem::linkToLogout('Logout', 'fa fa-door-open');
+        yield MenuItem::linkToLogout('Déconnexion', 'fa fa-door-open');
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
@@ -55,8 +55,7 @@ class DashboardController extends AbstractDashboardController
             // use the given $user object to get the user name
             ->setName($user->getUserName())
             // use this method if you don't want to display the name of the user
-            ->displayUserName(false)
-
+            ->displayUserName(true)
             // you can use any type of menu item, except submenus
             ->addMenuItems([
             ]);
