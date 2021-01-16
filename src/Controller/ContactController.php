@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Form\ContactFormType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +35,7 @@ class ContactController extends AbstractController
                 ]);
             $mailer->send($email);   
             
-            $this->addFlash('success', 'Message envoyé !');
+            $this->addFlash('success', 'Votre message a été envoyé !');
 
             return $this->redirectToRoute('app_homepage');
         }
