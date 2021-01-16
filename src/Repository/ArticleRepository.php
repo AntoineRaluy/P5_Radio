@@ -25,7 +25,7 @@ class ArticleRepository extends ServiceEntityRepository
     //  */
 
 
-    public function findAllPostedOrderedByNewest()
+    public function findAllPostedOrderedByNewest()          // sort articles with latest first
     {   
         $this->createQueryBuilder('a')
             ->addCriteria(self::createFlaggedCriteria());
@@ -37,7 +37,7 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     
-    public static function createFlaggedCriteria(): Criteria
+    public static function createFlaggedCriteria(): Criteria        // display flagged comments
     {
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('isFlagged', true))

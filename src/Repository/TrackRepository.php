@@ -20,7 +20,7 @@ class TrackRepository extends ServiceEntityRepository
         parent::__construct($registry, Track::class);
     }
 
-    public function findAllPostedTracksOrderedByArtist()
+    public function findAllPostedTracksOrderedByArtist()        // sort track which are onliny by artist name
     {   
             return $this->createQueryBuilder('t')
             ->Where('t.status = 1')
@@ -30,7 +30,7 @@ class TrackRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findTrack($artist, $title) {
+    public function findTrack($artist, $title) {            // search for track with same artist and title
         return $this->createQueryBuilder('Track')
             ->Where('Track.title LIKE :title')
             ->andWhere('Track.artist LIKE :artist')
