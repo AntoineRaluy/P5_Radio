@@ -3,7 +3,7 @@ index:
    controller: App\Controller\ArticleController::homepage
 
 dashboard:
-   path: /admin
+   path: /eadmin
    controller: App\Controller\Admin\DashboardController::index
 
 app_logout:
