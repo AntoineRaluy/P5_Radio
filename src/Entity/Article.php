@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -45,6 +44,7 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $author;
 

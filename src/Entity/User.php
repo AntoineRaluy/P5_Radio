@@ -7,9 +7,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -33,7 +33,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="username", type="string", length=180, unique=true)
-     * @Assert\NotBlank(message="Merci de renseigner un nom d'utilisateur")
+     * @Assert\NotBlank(message="Merci de renseigner un nom d'utilisateur.")
      */
     private $username;
 
@@ -50,7 +50,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="Merci de renseigner une adresse mail")
+     * @Assert\NotBlank(message="Merci de renseigner une adresse mail.")
      * @Assert\Email()
      */
     private $email;
@@ -126,7 +126,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        // $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
