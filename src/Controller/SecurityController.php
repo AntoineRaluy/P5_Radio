@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 use App\Entity\User;
+use App\Form\ChangePasswordFormType;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -21,7 +24,7 @@ class SecurityController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-                            
+        
         return $this->render('@EasyAdmin/page/login.html.twig', [
             // parameters usually defined in Symfony login forms
             'error' => $error,
@@ -71,6 +74,7 @@ class SecurityController extends AbstractController
     {
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $user = $form->getData();
@@ -85,6 +89,9 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $this->addFlash('success', "Bienvenue sur le site {$user->getUsername()} !");
+
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
@@ -92,8 +99,45 @@ class SecurityController extends AbstractController
                 'main'
             );
         }
+
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/profile/{username}/password", name="app_edit_password")
+     */
+    public function editPassword(User $user, Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
+    {   
+        if ($user->getUsername() !== $this->getUser()->getUsername()) {     // prevents other users to acces the page
+            throw $this->createAccessDeniedException();
+        }
+        
+        $form = $this->createForm(ChangePasswordFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user */
+            if ($passwordEncoder->isPasswordValid($user, $form['oldPassword']->getData())) {
+                $user->setPassword($passwordEncoder->encodePassword(
+                    $user,
+                    $form['plainPassword']->getData()
+                ));
+            }
+            else {
+                $this->addFlash('danger', 'Le mot de passe actuel est invalide. Réessayez');
+                return $this->render('security/changepassword.html.twig', [
+                    'changePasswordForm' => $form->createView(),
+                ]);
+            }
+            $entityManager->flush();
+            return $this->redirectToRoute('app_user');
+        }
+    
+        return $this->render('security/changepassword.html.twig', [
+            'changePasswordForm' => $form->createView(),
         ]);
     }
 }
