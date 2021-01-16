@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserRegistrationFormType extends AbstractType
 {
@@ -25,8 +26,12 @@ class UserRegistrationFormType extends AbstractType
             ->add('email', null, [
                 'label' => 'Adresse mail :'
             ])
-            ->add('plainPassword', PasswordType::class, [
-                'label' => 'Mot de passe :',
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'label' => false,
+                'invalid_message' => 'Les deux mots de passe doivent être identiques.',
+                'first_options'  => ['label' => 'Entrez un mot de passe :'],
+                'second_options' => ['label' => 'Retapez le mot de passe :'],
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -36,10 +41,10 @@ class UserRegistrationFormType extends AbstractType
                         'min' => 8,
                         'minMessage' => 'Le mot de passe doit faire 8 caractères au minimum.'
                     ])
-                ]
+                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Accepter les conditions',
+                'label' => false,
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -48,7 +53,7 @@ class UserRegistrationFormType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'S\'inscrire',
+                'label' => 'Valider l\'inscription',
             ])
             ;
     }

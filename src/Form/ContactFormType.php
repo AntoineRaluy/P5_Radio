@@ -26,7 +26,7 @@ class ContactFormType extends AbstractType
                 'label' => 'Email :',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir votre mail.'
+                        'message' => 'Veuillez saisir votre adresse mail.'
                     ])
                 ],
             ])
@@ -34,7 +34,7 @@ class ContactFormType extends AbstractType
                 'label' => 'Objet du message :',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un objet.'
+                        'message' => 'Veuillez saisir un objet pour le message.'
                     ])
                 ],
             ])
@@ -42,7 +42,7 @@ class ContactFormType extends AbstractType
                 'label' => 'Votre message :',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un message.'
+                        'message' => 'Veuillez entrer du texte dans le champ de message.'
                     ])
                 ],
             ])
