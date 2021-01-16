@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use League\Glide\Filesystem\FileNotFoundException;
 use League\Glide\Responses\SymfonyResponseFactory;
-use League\Glide\Responses\SymfonyResponseFactoryInterface;
 use League\Glide\Server;
 use League\Glide\Signatures\SignatureException;
 use League\Glide\Signatures\SignatureFactory;
