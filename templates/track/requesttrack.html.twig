@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposez un nouveau morceau{% endblock %}
+
+{% block body %}
+
+<div>
+    {{ form_start(newTrackForm) }}
+    {{ form_widget(newTrackForm) }}
+
+    <input type="submit" value="Envoyer" class="btn btn-success">
+     {# formnovalidate="formnovalidate" #}
+
+    {{ form_end(newTrackForm) }}
+</div>
+
+{% endblock %}
