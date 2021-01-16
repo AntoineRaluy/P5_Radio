@@ -29,7 +29,7 @@
                         <ul class="navbar-nav">
                             {% if app.user %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_user') }}">Voir Profil</a>
+                                <a class="nav-link" href="{{ path('app_user', {username: app.user.username}) }}">Voir Profil</a>
                             </li> 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -56,8 +56,16 @@
 
         {% block body %}
         {% endblock %}
+
         {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        <script src="//cookie.eurowebpage.com/cookie.js?skin=cookielaw3&amp;box_radius=4&amp;position=bottom_right&amp;delay=1&amp;bg_color=22a9e6&amp;msg_color=ffffff&amp;link_color=0c0c0c&amp;accept_background=ffffff&amp;accept_color=295285&amp;accept_radius=3"></script>
+
+        {{ encore_entry_script_tags('flashMessage') }}
+
         {% endblock %}
     </body>
+    <footer class="bg-info footmenu">
+        <p class="text-center pt-1"><a class="policies text-white" href="{{ path('app_policies') }}">Mentions légales</a> <a class="cookies pl-3 pr-3 text-white" href="{{ path('app_cookies') }}">Politique de confidentialité</a> <a class="sitemap text-white " href="{{ path('sitemap') }}">Plan du site</a></p>
+    </footer>
 </html>
