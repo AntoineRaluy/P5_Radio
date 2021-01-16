@@ -7,3 +7,15 @@ html {
 h3 {
     color:green;
 }
+
+#notfound {
+    display: none;
+}
+
+#track-form {
+    display: none;
+}
+
+.track-genre {
+    text-transform: capitalize;
+} 
