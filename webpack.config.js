@@ -13,6 +13,10 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
+    .copyFiles({
+        from: './assets/images',
+    })
+
 
     /*
      * ENTRY CONFIG
@@ -26,6 +30,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('searchTrack', './assets/js/searchfield.js')
     .addEntry('coverArt', './assets/js/coverart.js')
+    .addEntry('flashMessage', './assets/js/flashmessage.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
