@@ -31,6 +31,7 @@ Encore
     .addEntry('searchTrack', './assets/js/searchfield.js')
     .addEntry('coverArt', './assets/js/coverart.js')
     .addEntry('flashMessage', './assets/js/flashmessage.js')
+    .addEntry('cleanBlog', './assets/js/clean-blog.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

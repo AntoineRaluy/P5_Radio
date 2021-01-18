@@ -15,10 +15,10 @@ class NewTrackFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('artist', TextareaType::class, [
+            ->add('artist', null, [
                 'label' => 'Nom de l\'artiste :'
             ])
-            ->add('title', TextareaType::class, [
+            ->add('title', null, [
                 'label' => 'Titre du morceau :'
             ])
             ->add('source', UrlType::class, [

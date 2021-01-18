@@ -52,7 +52,9 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('info', 'Votre profil a été mis à jour.');
-            return $this->redirectToRoute('app_user');
+            return $this->redirectToRoute('app_user', [
+                'username' => $user->getUsername(),
+        ]);
         }
     
         return $this->render('user/profile_edit.html.twig', [

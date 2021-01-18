@@ -1,18 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Homepage</h1>
-
-<div class="row">
-    {% for article in articles %}
-    <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="card m-2 shadow-sm">
-            <a class="a-title" href="{{ path('app_article_show', { slug: article.slug }) }}"><h2>{{ article.title }}</h2></a>
-            <small>({{ article.comments|length }} commentaires)</small>
-            <p class="d-inline">{{ article.content|raw }}</p>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/home.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Beats'N'Roll Radio</h1>
+            <span class="subheading">La radio qui s'adapte à tous les styles !</span>
+          </div>
         </div>
+      </div>
     </div>
-    {% endfor %}
-</div>
-    {{ knp_pagination_render(articles) }}
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
+<div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-10 mx-auto">
+        {% for article in articles %}
+        <div class="post-preview">
+          <a href="{{ path('app_article_show', { slug: article.slug }) }}">
+            <h2 class="post-title">{{ article.title }}</h2>
+            <h3 class="post-subtitle">
+              {% set text = article.content|striptags %}
+              {{ text|length > 150 ? text|slice(0, 150) ~ '...' : text }}
+            </h3>
+          </a>
+          <p class="post-meta">Publié le : 
+            {{ article.createdAt|date("d/m/Y") }} </p>
+          <p class="post-comment text-right"><small>{{ article.comments|length }} <i class="far fa-comments"></i> </small></p>
+        </div>
+        <hr>
+        {% endfor %}
+
+        <!-- Pager -->
+        <div class="clearfix">
+          {{ knp_pagination_render(articles) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

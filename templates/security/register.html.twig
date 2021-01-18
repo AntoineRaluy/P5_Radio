@@ -4,9 +4,25 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/misc.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Inscription</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+      <div class="col-lg-6 col-md-10 mx-auto">
             {{ form_start(registrationForm) }}
                 {{ form_label(registrationForm.username) }}
                 {{ form_widget(registrationForm.username) }} 
@@ -15,10 +31,15 @@
                 {{ form_label(registrationForm.email) }}
                 {{ form_widget(registrationForm.email) }} 
                 
-                {{ form_widget(registrationForm.agreeTerms) }} 
+                <div class="row mt-5 pl-2">
+                <div class="pt-1">{{ form_widget(registrationForm.agreeTerms) }} 
+                </div>
+                <div>
                 {% block resgistrationForm_agreeTerms_label %}
-                {{ 'Accepter les <a href="{{ path("app_policies") }}">conditions</a> pour finaliser l\'inscription' | raw }}
-                {% endblock %} 
+                {{ "Accepter les <a href='../policies'>conditions</a> pour finaliser l\'inscription" | raw }}
+                {% endblock %}
+                </div>
+                </div> 
                 <br>
                 {{ form_label(registrationForm.submit) }}
                 {{ form_widget(registrationForm.submit) }} 

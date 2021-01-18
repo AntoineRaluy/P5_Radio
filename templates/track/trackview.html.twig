@@ -1,26 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ track.title }}{% endblock %}
+{% block title %}Détails du morceau {{ track.title }}{% endblock %}
 
 {% block body %}
-<h2>{{ track.title }}</h2>
-    <span>
-        ajouté le {{ track.createdAt|date('d-m-Y') }} par {{ track.contributor }}
-    </span>
-        <div class="row">
-                <p>Morceau interprété par : <span class="artist-name">{{ track.artist }}</span></p>
-                <p>Genre : <span class="track-genre">{{ track.genre }}</span></p>
-                <p>Année : <span class="track-year">{{ track.year }}</span></p>
-                <p>Ajouté par : <span class="track-contrib"> 
-                {% if track.contributor %}
-                {{ track.contributor }}
-                {% else %}
-                Un utilisateur anonyme.
-                {% endif %}
-                </span></p>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/track.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{ track.title }}</h1>
+            <span class="subheading">Plus d'informations sur ce morceau de {{ track.artist }}.</span>
+          </div>
         </div>
-
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
+<div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mx-auto text-center">
         <div id="artwork"></div>
+      </div>
+      <div class="col-lg-6 col-md-6 mx-auto">
+        <p><strong>Morceau interprété par :</strong> <span class="artist-name">{{ track.artist }}</span></p>
+        <p><strong>Genre :</strong> <span class="track-genre">{{ track.genre }}</span></p>
+        <p><strong>Année :</strong> <span class="track-year">{{ track.year }}</span></p>
+        <p><strong>Ajouté par :</strong> <span class="track-contrib"> 
+        {% if track.contributor %}
+        {{ track.contributor }}
+        {% else %}
+        <em>Un utilisateur anonyme</em>
+        {% endif %}
+        </span> le {{ track.createdAt|date('d-m-Y') }}.</p>
+      </div>
+  </div>
+</div>
+
 
 {% endblock %}
 

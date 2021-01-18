@@ -73,7 +73,7 @@ const $sendTrackForm = document.querySelector('#track-form');
             $songUnknown.style.display = "none";
         }
         mbTracks.forEach((mbTrack, index) => {
-            $songChoice.insertAdjacentHTML('beforeend', '<p> <input type="radio" class="trackSelect['+index+']" name="trackChoice">' + mbTrack.artist + ' - ' + mbTrack.title + ' (' + fmtMSS((mbTrack.length)) + ') du disque : <em>' + mbTrack.album + ' [' + mbTrack.year + ']</em> </p>');
+            $songChoice.insertAdjacentHTML('beforeend', '<p> <input type="radio" class="trackSelect['+index+']" name="trackChoice"> ' + mbTrack.artist + ' - ' + mbTrack.title + ' (' + fmtMSS((mbTrack.length)) + ') du disque : <em>' + mbTrack.album + ' [' + mbTrack.year + ']</em> </p>');
         })
         $songChoice.scrollIntoView();
         selectTrack(mbTracks);

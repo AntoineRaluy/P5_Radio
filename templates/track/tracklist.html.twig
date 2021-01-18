@@ -1,29 +1,51 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Playlist de Beats'N'Roll Radio{% endblock %}
+
 {% block body %}
-
-    <h1>Base de données des titres de la radio</h1>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/track.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Base de données de la radio</h1>
+            <span class="subheading">Liste de tous les morceaux en ligne.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
+<div class="container">
+    <div class="row">
+      <div class="col-lg-11 col-md-10 mx-auto">
     
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Artiste</th>
-      <th scope="col">Titre</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Année</th>
-    </tr>
-  </thead>
-  <tbody>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Artiste</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Année</th>
+          </tr>
+        </thead>
+        <tbody>
 
-    {% for track in tracks %}
-        <tr>
-            <td>{{ track.artist }}</td>
-            <td><a class="a-title" href="{{ path('app_track_show', { id: track.id }) }}">{{ track.title }}</a></td>
-            <td class="genre">{{ track.genre }}</td>
-            <td>{{ track.year }}</td>
-        </tr>
-    {% endfor %}
-  </tbody>
-</table>
+        {% for track in tracks %}
+            <tr>
+                <td>{{ track.artist }}</td>
+                <td><a class="a-title" href="{{ path('app_track_show', { id: track.id }) }}">{{ track.title }}</a></td>
+                <td class="track-genre">{{ track.genre }}</td>
+                <td>{{ track.year }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

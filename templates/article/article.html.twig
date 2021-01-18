@@ -3,46 +3,71 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-<div class="row">
-        <div class="col mt-5">
-        <span>
-        {{ article.createdAt|date('d-m-Y') }}
-        </span>
-                <div class="article-text">
-                        {{ article.content|raw }}
-                </div>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/post.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ article.title }}</h1>
+            <span class="meta">Publié le : 
+              {{ article.createdAt|date("d/m/Y") }}</span>
+          </div>
         </div>
+      </div>
     </div>
-<hr>
+  </header>
+  {% include 'flash_messages.html.twig' %}
 
-<div class="row mt-3">
-    <div class="col">
-        <h3><i class="pr-3 fa fa-comment"></i>{{ article.comments|length }} Commentaires</h3>
-        <hr>
-        {% for comment in article.comments %}
-                <div class="row">
-                        <span class="commenter-name">{{ comment.author }}</span>
-                        <small> {{ comment.createdAt|date('d-m-Y') }}</small>
-                        {% if comment.isFlagged %}
-                                <span class="fa fa-flag"></span> Commentaire en attente de modération
-                        {% else %}
-                                <br>
-                                <span class="comment"> {{ comment.content }}</span>
-                                <br>
-                                <form action="{{ url('app_flag_comment', {slug: article.slug, id: comment.id}) }}" method="POST"><button name="flag">Signaler le commentaire</button></form>
-                        {% endif %}
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-10 mx-auto">
+          {{ article.content|raw }}
+          <hr>
+          <p class="text-center"><h2>{{ article.comments|length }} commentaire(s) <i class="pr-3 far fa-comment"></i></h2></p>
+          <hr>
+          {% for comment in article.comments %}
+            <div class="comment">
+                <div class="row d-flex justify-content-between">
+                        <p class="comment-author"><strong>{{ comment.author }}</strong></p>
+                        <p class="comment-date"><small> {{ comment.createdAt|format_datetime(locale='fr') }}</small></p>
+                </div>
+                {% if comment.isFlagged %}
+                <div class="comment-flagged">
+                        <p class="text-center"><em>Commentaire en attente de modération.</em></p>                            
+                </div>
+              {% else %}
+              <div class="d-flex">
+              <div>
+                <p class="comment-text"> {{ comment.content }}</p>
+                </div>
+              <div class="ml-auto">
+              {% if app.user %}
+                <p><form action="{{ url('app_flag_comment', {slug: article.slug, id: comment.id}) }}" class="flag-button-form" method="POST"><button name="flag" class="flag-button" title="Signaler le commentaire"><i class="far fa-flag"></i></button></form></p>
+              {% endif %}
                 </div>
                 
-        {% endfor %}
-    </div>
-</div>
-
+                </div>
+              {% endif %}
+            </div>
+         {% endfor %}
+        
+        <div class="comment-form">
+        <hr>
         {% if app.user %}
-        {{ form_start(commentForm) }}
-        {{ form_widget(commentForm) }}
-        {{ form_end(commentForm) }}
+                {{ form_start(commentForm) }}
+                        {{ form_widget(commentForm) }}
+                        {{ form_rest(commentForm) }}
+                {{ form_end(commentForm)}}
         {% else %}
-        <div><p>Connectez-vous pour poster un commentaire.</p></div>
+        <p><a href="{{ path('app_login') }}">Connectez-vous</a> pour répondre à cet article.</p>
         {% endif %}
-
+        </div>
+        </div>
+      </div>
+    </div>
+  </article>
 {% endblock %}

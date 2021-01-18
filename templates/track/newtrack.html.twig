@@ -1,55 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proposer un morceau{% endblock %}
+{% block title %}Ajout de morceau{% endblock %}
 
 {% block body %}
-<h2>Proposer un morceau</h2>
-
-<div>
-    <p>Renseignez le nom d'artiste et du morceau, puis sélectionnez le titre correspondant : </p>
-</div>
-
-<div id="track-details">
-    <form class="newtrack-form">
-        <div class="artist-field">
-        <label for="artist-name">Nom de l'artiste :</label>
-        <input id="artist-name" type="text" placeholder="Artiste" name="" required />
+  <header class="masthead" style="background-image: url('../build/track.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Ajout d'un nouveau morceau</h1>
+            <span class="subheading">Proposez une nouvelle piste à ajouter à la radio.</span>
+          </div>
         </div>
-        <div class="title-field">
-        <label for="track-title">Titre du morceau :</label>
-        <input id="track-title" type="text" placeholder="Morceau" name="" required />
-        </div>
-        <div class="searchbtn">
-        <input type="submit" id="search-button" value="Rechercher" />
-        </div>
-    </form>
-    <hr>
+      </div>
     </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
+<div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-9 mx-auto">
 
-<div id="select-song">
+        <div>
+            <p>Renseignez le nom d'artiste et du morceau, puis sélectionnez le titre correspondant : </p>
+        </div>
+
+        <div id="track-details">
+            <form class="newtrack-form">
+                <div class="artist-field">
+                <label for="artist-name">Nom de l'artiste : </label>
+                <input id="artist-name" type="text" placeholder="Artiste" name="" required />
+                </div>
+                <div class="title-field">
+                <label for="track-title">Titre du morceau : </label>
+                <input id="track-title" type="text" placeholder="Morceau" name="" required />
+                </div>
+                <div class="text-center mt-2">
+                <input type="submit" class="btn btn-primary" id="search-button" value="Rechercher" />
+                </div>
+            </form>
+            <hr>
+            </div>
+
+        <div id="select-song">
+        </div>
+
+        <div id="notfound">
+            <p>Votre recherche n'a donné aucun résultat. 
+            Vous pouvez <a href="{{ path('app_request_track') }}">envoyer votre demande à l'administrateur</a> avec les renseignements nécessaires. </p>
+        </div>
+
+        <div id="track-form">
+        {{ form_start(trackForm) }}
+            {{ form_label(trackForm.artist) }}
+            {{ form_widget(trackForm.artist) }} 
+            {{ form_label(trackForm.title) }}
+            {{ form_widget(trackForm.title) }} 
+            {{ form_label(trackForm.genre) }}
+            {{ form_widget(trackForm.genre) }} 
+            {{ form_label(trackForm.year) }}
+            {{ form_widget(trackForm.year) }} 
+            {{ form_widget(trackForm.mbid) }} 
+            {{ form_rest(trackForm) }}
+            <button id="music-search-field" class="btn btn-primary mt-3 ml-5">Envoyer</button>
+        {{ form_end(trackForm) }}
+        </div>
+    </div>
+  </div>
 </div>
-
-<div id="notfound">
-    <p>Votre recherche n'a donné aucue résultat. 
-    Vous pouvez <a href="{{ path('app_request_track') }}">envoyer votre demande à l'administrateur</a> avec les renseignements nécessaires. </p>
-</div>
-
-<div id="track-form">
-{{ form_start(trackForm) }}
-    {{ form_label(trackForm.artist) }}
-    {{ form_widget(trackForm.artist) }} 
-    {{ form_label(trackForm.title) }}
-    {{ form_widget(trackForm.title) }} 
-    {{ form_label(trackForm.genre) }}
-    {{ form_widget(trackForm.genre) }} 
-    {{ form_label(trackForm.year) }}
-    {{ form_widget(trackForm.year) }} 
-    {{ form_widget(trackForm.mbid) }} 
-    {{ form_rest(trackForm) }}
-    <button id="music-search-field" class="btn btn-primary">Envoyer</button>
-{{ form_end(trackForm) }}
-</div>
-
 {% endblock %}
 
 {% block javascripts %}

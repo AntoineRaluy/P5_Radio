@@ -21,7 +21,7 @@ class UserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextareaType::class, [
+            ->add('username', null, [
                 'label' => 'Nom d\'utilisateur :',
                 'constraints' => [
                     new NotBlank([
@@ -38,7 +38,7 @@ class UserFormType extends AbstractType
                     ])
                 ],
             ])
-            ->add('firstName', TextareaType::class, [
+            ->add('firstName', null, [
                 'label' => 'Prénom :',
             ])
             ->add('imageFilename', FileType::class, [

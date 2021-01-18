@@ -4,14 +4,49 @@
 
 {% block body %}
 
-<div>
-    {{ form_start(contactForm) }}
-    {{ form_widget(contactForm) }}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/misc.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Contact</h1>
+            <span class="subheading">Vous avez des questions ? N'hésitez-pas !</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
 
-    <input type="submit" value="Envoyer" class="btn btn-success">
-     {# formnovalidate="formnovalidate" #}
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mx-auto">
+        <p>Remplissez le formulaire pour me contacter et je vous répondrai dès que possible.</p>
 
-    {{ form_end(contactForm) }}
-</div>
+        {{ form_start(contactForm) }}
+        {{ form_widget(contactForm) }}
+          <br>
+          <div class="text-center">
+          <input type="submit" value="Envoyer" class="btn btn-primary">
+          {# formnovalidate="formnovalidate" #}
+          </div>
+
+        {{ form_end(contactForm) }}
+      </div>
+      <div class="col-lg-6 col-md-6 mx-auto">
+        <div class="contact-details text-center">
+        <h2>Coordonnées</h2>
+        <p><strong>Beats'N'Roll Radio</strong><br />
+        35, rue de l'Epeule<br />
+        18170 Glasceaux<br />
+        France<br />
+        Tél. <a href="tel:+33672134509">+33 6 72 13 45 09</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

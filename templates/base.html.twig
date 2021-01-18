@@ -1,71 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Bonjour !{% endblock %}</title>
-        {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <header class="bg-info navmenu">
-                <nav class="navbar navbar-expand-md navbar-dark">
-                    <a class="navbar-brand mr-5" href="{{ path('app_homepage') }}"><h1>Radio</h1></a>
-                    <div id="collapse navbar-collapse">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href='{{ path('app_homepage') }}'>Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_track_new') }}">Proposer un morceau</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_tracklist') }}">Liste des morceaux</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
-                            </li> 
-                        </ul>
-                        <ul class="navbar-nav">
-                            {% if app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_user', {username: app.user.username}) }}">Voir Profil</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                            </li> 
-                                {% if is_granted('ROLE_ADMIN') == true %}
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin') }}">Panneau d'administration</a>
-                                </li> 
-                                {% endif %}
-                            {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
-                            </li> 
-                            {% endif %}
-                        </ul>
-                    </div>
-                </nav>
-    </header>
 
-        {% include 'flash_messages.html.twig' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="La radio participative de référence : tous les styles en une seule station.">
+     <meta name="keywords" content="radio, music, eclectic, community"> 
+    <meta name="author" content="araluy">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<link rel="canonical" href="https://beatsnroll.araluy.fr/" />
+	<link rel="next" href="https://beatsnroll.araluy.fr/?page=2" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link href="LICENSE" rel="license" title="Licensing Information">
 
-        {% block body %}
-        {% endblock %}
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Beats'N'Roll Radio : la radio participative qui s'adapte à tous les goûts." />
+	<meta property="og:description" content="La radio participative de référence : tous les styles en une seule station." />
+	<meta property="og:url" content="https://beatsnroll.araluy.fr/" />
+	<meta property="og:site_name" content="Beats'N'Roll Radio" />
 
-        {% block javascripts %}
+    <title>{% block title %}Beats'N'Roll Radio{% endblock %}</title>
+
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+
+<body>
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="{{ path('app_homepage') }}">B'N'R Radio</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href='{{ path('app_homepage') }}'>Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_track_new') }}">Proposer un morceau</a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_tracklist') }}">Liste des morceaux</a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+          </li> 
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if app.user %}
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_user', {username: app.user.username}) }}">Voir Profil</a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+          </li> 
+              {% if is_granted('ROLE_ADMIN') == true %}
+              <li class="nav-item">
+              <a class="nav-link" href="{{ path('admin') }}">Panneau d'administration</a>
+              </li> 
+              {% endif %}
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+          </li> 
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+    
+    {% block body %}
+    {% endblock %}
+
+    {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('cleanBlog') }}
+
         <script src="//cookie.eurowebpage.com/cookie.js?skin=cookielaw3&amp;box_radius=4&amp;position=bottom_right&amp;delay=1&amp;bg_color=22a9e6&amp;msg_color=ffffff&amp;link_color=0c0c0c&amp;accept_background=ffffff&amp;accept_color=295285&amp;accept_radius=3"></script>
 
         {{ encore_entry_script_tags('flashMessage') }}
 
-        {% endblock %}
-    </body>
-    <footer class="bg-info footmenu">
-        <p class="text-center pt-1"><a class="policies text-white" href="{{ path('app_policies') }}">Mentions légales</a> <a class="cookies pl-3 pr-3 text-white" href="{{ path('app_cookies') }}">Politique de confidentialité</a> <a class="sitemap text-white " href="{{ path('sitemap') }}">Plan du site</a></p>
-    </footer>
+    {% endblock %}
+    <hr>
+</body>
+    <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="text-center pt-1"><a class="policies text-muted" href="{{ path('app_policies') }}">Mentions légales</a> <a class="cookies pl-3 pr-3 text-muted" href="{{ path('app_cookies') }}">Politique de confidentialité</a> <a class="sitemap text-muted " href="{{ path('sitemap') }}">Plan du site</a></p>
+          <p class="copyright text-muted text-center">Copyright &copy; Beats'N'Roll Radio 2021 - Theme &copy; <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog v5.0.10</a> </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>

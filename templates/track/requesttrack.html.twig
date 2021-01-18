@@ -1,17 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proposez un nouveau morceau{% endblock %}
+{% block title %}Formulaire de nouveau morceau{% endblock %}
 
 {% block body %}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/track.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Demande d'ajout de morceau</h1>
+            <span class="subheading">Proposez un nouveau morceau pour la radio.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
+  
+<div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 mx-auto">
 
-<div>
-    {{ form_start(newTrackForm) }}
-    {{ form_widget(newTrackForm) }}
+        <div>
+            {{ form_start(newTrackForm) }}
+            {{ form_widget(newTrackForm) }}
+            <div class="text-center">
+            <input type="submit" value="Envoyer" class="btn btn-primary">
+            </div>
+            {# formnovalidate="formnovalidate" #}
 
-    <input type="submit" value="Envoyer" class="btn btn-success">
-     {# formnovalidate="formnovalidate" #}
-
-    {{ form_end(newTrackForm) }}
+            {{ form_end(newTrackForm) }}
+        </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

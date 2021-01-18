@@ -1,19 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bonjour {{ app.user.username }}{% endblock %}
+{% block title %}Profil de {{ app.user.username }}{% endblock %}
 
 {% block body %}
-Bonjour {{ app.user.username }}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('../build/user.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Profil de {{ app.user.username }}</h1>
+            <span class="subheading">Accédez à vos paramètres.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% include 'flash_messages.html.twig' %}
 
-<img src="{{ app_asset(asset('uploads/avatars/' ~ app.user.imageFilename), {'w': 150, 'h': 150}) }}" class="" alt="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-10 mx-auto">
+      
+      <nav class="nav nav-tabs">
+        <a class="nav-link active" href="{{ path('app_user', {username: app.user.username}) }}">Voir le Profil</a>
+        <a class="nav-link" href="{{ path('app_user_edit', {username: app.user.username}) }}">Editer le Profil</a>
+        <a class="nav-link" href="{{ path('app_edit_password', {username: app.user.username}) }}">Modifier le mot de passe</a>
+      </nav>
+        
+        <div class="row">
+        <div class="col-lg-6 col-md-6 mx-auto text-center">
+        <p>Bonjour <strong>{{ app.user.username }}</strong> !</p>
 
-<ul>
-<li class="nav-item">
-    <a class="nav-link" href="{{ path('app_user_edit', {username: app.user.username}) }}">Editer le Profil</a>
-</li>
-<li class="nav-item">
-    <a href="{{ path('app_edit_password', {username: app.user.username}) }}">Modifier le mot de passe</a>
-</li> 
-</ul>
+        {% if app.user.imageFilename %}
+        <img src="{{ app_asset(asset('uploads/avatars/' ~ app.user.imageFilename), {'w': 150, 'h': 150}) }}" class="" alt="">
+        {% else %}
+        <img src="../build/defaultAvatar.png" class="" alt="">
+        {% endif %}
+        </div>
 
+      <div class="col-lg-6 col-md-6 mx-auto text-left">
+      <p><strong>Prénom :</strong> <span class="user-firstname">{{ app.user.firstName }}</span></p>
+        <p><strong>Adresse mail :</strong> <span class="user-mail">{{ app.user.email }}</span></p>
+        <p><strong>Inscrit le :</strong> <span class="user-date">{{ app.user.createdAt|date('d-m-Y') }}</span></p>
+        <p><strong>Morceaux ajoutés :</strong> <span class="user-tracks">{{ app.user.tracks|length }}</span></p>
+      </div>
+      </div>     
+
+    </div>
+  </div>
+</div>
 {% endblock %}

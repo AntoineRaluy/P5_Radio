@@ -1,5 +1,9 @@
 const $closeFlash = document.querySelector('.close-fm-button');
-$closeFlash.onclick = closeFlashMessage;
+if ($closeFlash != null) {
+    $closeFlash.scrollIntoView();
+    $closeFlash.onclick = closeFlashMessage;
+}
+
 
 function closeFlashMessage() {
 const $flashMessage = document.querySelector('.alert-dismissible');
