@@ -125,6 +125,13 @@ class SecurityController extends AbstractController
                     $user,
                     $form['plainPassword']->getData()
                 ));
+                
+                $entityManager->flush();
+            
+                $this->addFlash('success', "Votre mot de passe a bien été modifié.");
+                return $this->redirectToRoute('app_user', [
+                    'username' => $user->getUsername()
+                ]);
             }
             else {
                 $this->addFlash('danger', 'Le mot de passe actuel est invalide. Réessayez');
@@ -132,8 +139,6 @@ class SecurityController extends AbstractController
                     'changePasswordForm' => $form->createView(),
                 ]);
             }
-            $entityManager->flush();
-            return $this->redirectToRoute('app_user');
         }
     
         return $this->render('security/changepassword.html.twig', [
